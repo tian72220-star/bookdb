@@ -22,7 +22,7 @@
 <p class="p1">&lt;body class="container py-4"&gt;</p>
 <p class="p1"><span class="Apple-converted-space">  </span>&lt;h1 class="mb-4"&gt;📚 Library Management System&lt;/h1&gt;</p>
 <p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- 搜索框（新增） --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- 搜索框 --&gt;</p>
 <p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card mb-4"&gt;</p>
 <p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-header"&gt;🔍 Search Books&lt;/div&gt;</p>
 <p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-body"&gt;</p>
@@ -56,7 +56,7 @@
 <p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
 <p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
 <p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- 书籍列表 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- 书籍列表（改用 ID 操作） --&gt;</p>
 <p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
 <p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-header"&gt;📖 Book List&lt;/div&gt;</p>
 <p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-body p-0"&gt;</p>
@@ -70,13 +70,16 @@
 <p class="p1"><span class="Apple-converted-space">        </span>{% endif %}</p>
 <p class="p1"><span class="Apple-converted-space">        </span>{% for b in books %}</p>
 <p class="p1"><span class="Apple-converted-space">          </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;{{ b[0] }}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;&lt;strong&gt;#{{ b[0] }}&lt;/strong&gt;&lt;/td&gt;<span class="Apple-converted-space">  </span>&lt;!-- 显示 ID --&gt;</p>
 <p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;{{ b[1] }}&lt;/td&gt;</p>
 <p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;{{ b[2] }}&lt;/td&gt;</p>
 <p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;{{ b[3] }}&lt;/td&gt;</p>
 <p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;{{ b[4] }}&lt;/td&gt;</p>
 <p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;a class="btn btn-sm btn-danger" href="/delete/{{ b[1] }}" onclick="return confirm('Delete?')"&gt;🗑️&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;!-- 改用 ID 删除 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;a class="btn btn-sm btn-danger" href="/delete/{{ b[0] }}" onclick="return confirm('Delete #{{ b[0] }}?')"&gt;🗑️ Delete&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;!-- 编辑按钮（跳到编辑页） --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;a class="btn btn-sm btn-warning" href="/edit/{{ b[0] }}"&gt;✏️ Edit&lt;/a&gt;</p>
 <p class="p1"><span class="Apple-converted-space">            </span>&lt;/td&gt;</p>
 <p class="p1"><span class="Apple-converted-space">          </span>&lt;/tr&gt;</p>
 <p class="p1"><span class="Apple-converted-space">        </span>{% endfor %}</p>
