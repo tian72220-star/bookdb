@@ -1,54 +1,38 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+  <meta charset="utf-8">
+  <title>Edit Book #{{ book[0] }}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-<p class="p1">&lt;!doctype html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="utf-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Edit Book #{{ book[0] }}&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body class="container py-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;h1 class="mb-4"&gt;✏️ Edit Book #{{ book[0] }}&lt;/h1&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-body"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;form action="/update/{{ book[0] }}" method="post" class="row g-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="col-12"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;label&gt;Title&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;input class="form-control" name="title" value="{{ book[1] }}" required&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="col-md-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;label&gt;Author&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;input class="form-control" name="author" value="{{ book[2] }}" required&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="col-md-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;label&gt;Publish Date&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;input class="form-control" name="publish_date" value="{{ book[3] }}" required&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="col-md-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;label&gt;ISBN&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;input class="form-control" name="isbn" value="{{ book[4] }}" required&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="col-12"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;button class="btn btn-success"&gt;💾 Save Changes&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;a class="btn btn-outline-secondary" href="/"&gt;Cancel&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/form&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+<body class="container py-4">
+  <h1 class="mb-4">✏️ Edit Book #{{ book[0] }}</h1>
+
+  <div class="card">
+    <div class="card-body">
+      <form action="/update/{{ book[0] }}" method="post" class="row g-3">
+        <div class="col-12">
+          <label>Title</label>
+          <input class="form-control" name="title" value="{{ book[1] }}" required>
+        </div>
+        <div class="col-md-4">
+          <label>Author</label>
+          <input class="form-control" name="author" value="{{ book[2] }}" required>
+        </div>
+        <div class="col-md-4">
+          <label>Publish Date</label>
+          <input class="form-control" name="publish_date" value="{{ book[3] }}" required>
+        </div>
+        <div class="col-md-4">
+          <label>ISBN</label>
+          <input class="form-control" name="isbn" value="{{ book[4] }}" required>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-success">💾 Save Changes</button>
+          <a class="btn btn-outline-secondary" href="/">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
