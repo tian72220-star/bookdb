@@ -1,57 +1,90 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>Library Management</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
 </head>
-<body class="container py-4">
-  <h1 class="mb-4">📚 Library Management System</h1>
-
-  <!-- Add -->
-  <div class="card mb-4">
-    <div class="card-header">Add New Book</div>
-    <div class="card-body">
-      <form action="/add" method="post" class="row g-2">
-        <div class="col"><input class="form-control" name="title" placeholder="Title" required></div>
-        <div class="col"><input class="form-control" name="author" placeholder="Author" required></div>
-        <div class="col"><input class="form-control" name="publish_date" placeholder="Publish Date" required></div>
-        <div class="col"><input class="form-control" name="isbn" placeholder="ISBN" required></div>
-        <div class="col-auto"><button class="btn btn-primary">➕ Add Book</button></div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Search -->
-  <div class="card mb-4">
-    <div class="card-header">Search Book (Exact Title)</div>
-    <div class="card-body">
-      <form action="/search" method="get" class="row g-2">
-        <div class="col"><input class="form-control" name="keyword" placeholder="Enter exact title" required></div>
-        <div class="col-auto"><button class="btn btn-success">🔍 Search</button></div>
-        <div class="col-auto"><a class="btn btn-outline-secondary" href="/">Show All</a></div>
-      </form>
-    </div>
-  </div>
-
-  <!-- List -->
-  <div class="card">
-    <div class="card-header">Book List</div>
-    <div class="card-body p-0">
-      <table class="table table-hover mb-0">
-        <thead class="table-light"><tr><th>Title</th><th>Author</th><th>Date</th><th>ISBN</th><th>Actions</th></tr></thead>
-        <tbody>
-        {% for b in books %}
-          <tr>
-            <td>{{ b[1] }}</td><td>{{ b[2] }}</td><td>{{ b[3] }}</td><td>{{ b[4] }}</td>
-            <td>
-              <a class="btn btn-sm btn-danger" href="/delete/{{ b[1] }}" onclick="return confirm('Delete this book?')">🗑️ Delete</a>
-            </td>
-          </tr>
-        {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
+<body>
+<p class="p1">&lt;!doctype html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="utf-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Library Management&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="container py-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h1 class="mb-4"&gt;📚 Library Management System&lt;/h1&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- 搜索框（新增） --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-header"&gt;🔍 Search Books&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-body"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;form action="/" method="get" class="row g-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="col"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input class="form-control" name="keyword" placeholder="Enter keyword in title..."<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                 </span>value="{{ keyword or '' }}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="col-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button class="btn btn-success"&gt;Search&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;a class="btn btn-outline-secondary" href="/"&gt;Show All&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/form&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{% if keyword %}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="mt-2 text-muted"&gt;Results for: "{{ keyword }}"&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{% endif %}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- 新增书籍 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-header"&gt;➕ Add New Book&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-body"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;form action="/add" method="post" class="row g-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="col"&gt;&lt;input class="form-control" name="title" placeholder="Title" required&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="col"&gt;&lt;input class="form-control" name="author" placeholder="Author" required&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="col"&gt;&lt;input class="form-control" name="publish_date" placeholder="Publish Date" required&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="col"&gt;&lt;input class="form-control" name="isbn" placeholder="ISBN" required&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="col-auto"&gt;&lt;button class="btn btn-primary"&gt;Add Book&lt;/button&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/form&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- 书籍列表 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-header"&gt;📖 Book List&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-body p-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;table class="table table-hover mb-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;thead class="table-light"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Title&lt;/th&gt;&lt;th&gt;Author&lt;/th&gt;&lt;th&gt;Date&lt;/th&gt;&lt;th&gt;ISBN&lt;/th&gt;&lt;th&gt;Actions&lt;/th&gt;&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{% if not books %}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;tr&gt;&lt;td colspan="6" class="text-center text-muted"&gt;No books found&lt;/td&gt;&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{% endif %}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{% for b in books %}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;{{ b[0] }}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;{{ b[1] }}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;{{ b[2] }}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;{{ b[3] }}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;{{ b[4] }}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;a class="btn btn-sm btn-danger" href="/delete/{{ b[1] }}" onclick="return confirm('Delete?')"&gt;🗑️&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{% endfor %}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
 </body>
 </html>
