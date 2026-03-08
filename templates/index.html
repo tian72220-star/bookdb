@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -7,6 +7,12 @@
 </head>
 <body class="container py-4">
   <h1 class="mb-4">📚 Library Management System</h1>
+
+  <!-- 统计面板（新增） -->
+  <div class="alert alert-info d-flex justify-content-between align-items-center">
+    <span><strong>📊 Statistics:</strong> Total {{ total }} books</span>
+    <span class="text-muted">Latest: {{ latest }}</span>
+  </div>
 
   <!-- 搜索框 -->
   <div class="card mb-4">
@@ -42,7 +48,7 @@
     </div>
   </div>
 
-  <!-- 书籍列表（改用 ID 操作） -->
+  <!-- 书籍列表 -->
   <div class="card">
     <div class="card-header">📖 Book List</div>
     <div class="card-body p-0">
@@ -56,16 +62,14 @@
         {% endif %}
         {% for b in books %}
           <tr>
-            <td><strong>#{{ b[0] }}</strong></td>  <!-- 显示 ID -->
+            <td><strong>#{{ b[0] }}</strong></td>
             <td>{{ b[1] }}</td>
             <td>{{ b[2] }}</td>
             <td>{{ b[3] }}</td>
             <td>{{ b[4] }}</td>
             <td>
-              <!-- 改用 ID 删除 -->
-              <a class="btn btn-sm btn-danger" href="/delete/{{ b[0] }}" onclick="return confirm('Delete #{{ b[0] }}?')">🗑️ Delete</a>
-              <!-- 编辑按钮（跳到编辑页） -->
-              <a class="btn btn-sm btn-warning" href="/edit/{{ b[0] }}">✏️ Edit</a>
+              <a class="btn btn-sm btn-danger" href="/delete/{{ b[0] }}" onclick="return confirm('Delete #{{ b[0] }}?')">🗑️</a>
+              <a class="btn btn-sm btn-warning" href="/edit/{{ b[0] }}">✏️</a>
             </td>
           </tr>
         {% endfor %}

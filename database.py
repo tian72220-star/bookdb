@@ -18,7 +18,6 @@ def init_db():
         """)
     print("数据库/表 已准备好")
 
-# ---------- 原有函数 ----------
 def add_book(title, author, publish_date, isbn):
     with get_conn() as conn:
         conn.execute(
@@ -38,23 +37,27 @@ def search_books(keyword):
         )
         return cur.fetchall()
 
-# ---------- 新增：按 ID 操作（更稳）----------
 def get_book_by_id(book_id):
-    """用 ID 查单本书"""
     with get_conn() as conn:
         return conn.execute("SELECT * FROM book WHERE id = ?", (book_id,)).fetchone()
 
 def delete_book_by_id(book_id):
-    """用 ID 删除，返回 0 或 1（是否成功）"""
     with get_conn() as conn:
         cur = conn.execute("DELETE FROM book WHERE id = ?", (book_id,))
         return cur.rowcount
 
 def update_book_by_id(book_id, new_title, new_author, new_date, new_isbn):
-    """用 ID 更新"""
     with get_conn() as conn:
         cur = conn.execute(
             """UPDATE book SET title=?, author=?, publish_date=?, isbn=? WHERE id=?""",
             (new_title, new_author, new_date, new_isbn, book_id)
         )
         return cur.rowcount
+
+# ---------- 新增：统计面板 ----------
+def get_stats():
+    """返回总藏书量和最近添加的书名"""
+    with get_conn() as conn:
+        total = conn.execute("SELECT COUNT(*) FROM book").fetchone()[0]
+        latest = conn.execute("SELECT title FROM book ORDER BY id DESC LIMIT 1").fetchone()
+        return total, latest[0] if latest else "No books yet"
